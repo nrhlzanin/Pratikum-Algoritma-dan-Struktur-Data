@@ -1,0 +1,557 @@
+# LAPORAN PRAKTIKUM ALGORITMA DAN STRUKTUR DATA | JOBSHEET IV BRUTE FORCE DAN DIVIDW CONQUER
+
+Disusun Oleh:
+Nama 	: NURHALIZA ANINDYA PUTRI
+NIM 	: 2241720016
+Kelas 	: 1A
+
+PROGRAM STUDI D-IV TEKNIK INFORMATIKA
+JURUSAN TEKNOLOGI INFORMASI
+POLITEKNIK NEGERI MALANG
+
+Jl. Soekarno Hatta No.9, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 6514
+
+ 
+## 1	Tujuan Pratikujm
+Setelah melakukan materi praktikum ini, mahasiswa mampu: 
+1.	Mahasiswa mampu membuat algoritma bruteforce dan divide-conquer 
+2.	Mahasiswa mampu menerapkan penggunaan algorima bruteforce dan divide-conquer
+
+## 2	Menghitung Nilai Faktorial dengan Algoritma Brute Force dan Divide and Conquer
+Perhatikan Diagram Class berikut ini :
+
+ |Faktorial|
+ |-|
+ |niali: int|
+ ||
+ |faktorialBF(): int|
+ |faktorialDC(): int|
+ 
+Berdasarkan diagram class di atas, akan dibuat program class dalam Java. Untuk menghitung nilai faktorial suatu angka menggunakan 2 jenis algoritma, Brute Force dan Divide and Conquer. Jika digambarkan terdapat perbedaan proses perhitungan 2 jenis algoritma tersebut sebagai berikut : Tahapan pencarian nilai faktorial dengan algoritma Brute Force :
+ 
+Tahapan pencarian nilai faktorial dengan algoritma Divide and Conquer :
+ 
+**2.1	Langkah-langkah Percobaan**
+1.	Buat Project baru, dengan nama “BruteForceDivideConquer”. Buat package dengan nama minggu5. 
+2.	Buatlah class baru dengan nama Faktorial 
+3.	Lengkapi class Faktorial dengan atribut dan method yang telah digambarkan di dalam diagram class di atas, sebagai berikut: 
+  a.	Tambahkan atribut nilai
+```java
+public int nilai;
+```
+
+  b.	Tambahkan method faktorialBF() nilai
+``` java
+    public int faktorialBF(int n){
+        int fakto = 1;
+        int i = 1;
+        while (i <= n){
+            fakto = fakto * i;
+            i++;
+        }
+        return fakto;
+    }
+```
+
+  c.	Tambahkan method faktorialDC() nilai
+```java
+    public int faktorialDC(int n){
+        if (n==1){
+            return 1;
+        }
+        else{
+            int fakto = n * faktorialDC(n-1);
+            return fakto;
+        }
+    }
+```
+
+4.	Coba jalankan (Run) class Faktorial dengan membuat class baru MainFaktorial. 
+    a.	Di dalam fungsi main sediakan komunikasi dengan user untuk menginputkan jumlah angka yang akan dicari nilai faktorialnya 
+```java
+        Scanner sc = new Scanner(System.in);
+    
+        System.out.println("=====================================================");
+        System.out.print("Masukkan jumlah elemen yang ingin dihitung : ");
+        int elemen = sc.nextInt();
+```
+
+    b.	Buat Array of Objek pada fungsi main, kemudian inputkan beberapa nilai yang akan dihitung faktorialnya 
+```java
+        Faktorial [] fk = new Faktorial[elemen];
+        for (int i = 0; i < elemen; i++){
+            fk[i] = new Faktorial();
+            System.out.print("Masukkan nilai data ke-" + (i+1) + " : ");
+            fk[i].nilai = sc.nextInt();
+        }
+```
+     
+    c.	Tampilkan hasil pemanggilan method faktorialDC() dan faktorialBF()
+```java
+        System.out.println("=====================================================");
+        System.out.println("Hasil Faktorial dengan Brute Force");
+        for (int i = 0; i < elemen; i++){
+            System.out.println("Faktorial dari nilai " + fk[i].nilai + " adalah : " + fk[i].faktorialBF(fk[i].nilai));
+        }
+        System.out.println("Waktu eksekusi faktorialBF() " + (endTime1-startTime1));
+        System.out.println("=====================================================");
+        System.out.println("Hasil Faktorial dengan Divide Conquer");
+        for (int i = 0; i < elemen; i++){
+            System.out.println("Faktorial dari nilai " + fk[i].nilai + " adalah : " + fk[i].faktorialDC(fk[i].nilai));
+        }
+        System.out.println("=====================================================");
+```
+     
+    d.	Pastikan program sudah berjalan dengan baik!
+**2.2	Verifikasi Hasil Percobaan**
+
+Cocokkan hasil compile kode program anda dengan gambar berikut ini.
+ 
+**2.3	Pertanyaan**
+1.	Jelaskan mengenai base line Algoritma Divide Conquer untuk melakukan pencarian nilai faktorial! 
+>jika n=1, kembalikan 1 sebagai hasil
+>Jika n > 1, n dikali dengan faktorialDC(n-1)
+>Kembalikan nilai factorial dari n yang dihitung di atas.
+>Dengan menggunakan algoritma Divide and Conquer ini, kita dapat mencari nilai faktorial dengan kompleksitas waktu O(log n), yang lebih cepat daripada algoritma brute force dengan kompleksitas waktu O(n).
+
+2.	Pada implementasi Algoritma Divide and Conquer Faktorial apakah lengkap terdiri dari 3 tahapan divide, conquer, combine? Jelaskan masing-masing bagiannya pada kode program! 
+>Divide: membagi persoalan menjadi beberapa upa-persoalan yang memiliki kemiripan dengan persoalan semula namun berukuranlebih kecil (idealnya berukuran hampir sama),
+>Conquer (solve): menyelesaikan masing-masing upa-persoalan (secara langsung jika sudah berukuran kecil atau secara rekursif jika masih berukuran besar).
+>Combine: mengabungkan solusi masing-masing upa-persoalan sehingga membentuk solusi persoalan semula.
+
+3.	Apakah memungkinkan perulangan pada method faktorialBF() dirubah selain menggunakan for?Buktikan! 
+>Ya bisa yaitu dengan cara mengganti perulangan for loop menjadi while loop 
+```java
+public int faktorialBF(int n){
+        int fakto = 1;
+        int i = 1;
+        while (i <= n){
+            fakto = fakto * i;
+            i++;
+        }
+        return fakto;
+    }
+````
+
+_Hasil output_ 
+ 
+4.	Tambahkan pegecekan waktu eksekusi kedua jenis method tersebut! 
+```java 
+package minggu5;
+
+import java.util.Scanner;
+
+public class MainFaktorial {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        
+        long startTime1 = System.nanoTime();
+        long endTime1 = System.nanoTime();
+        
+        long startTime2 = System.nanoTime();
+        long endTime2 = System.nanoTime();
+    
+        System.out.println("=====================================================");
+        System.out.print("Masukkan jumlah elemen yang ingin dihitung : ");
+        int elemen = sc.nextInt();
+        
+        Faktorial [] fk = new Faktorial[elemen];
+        for (int i = 0; i < elemen; i++){
+            fk[i] = new Faktorial();
+            System.out.print("Masukkan nilai data ke-" + (i+1) + " : ");
+            fk[i].nilai = sc.nextInt();
+        }
+        
+        System.out.println("=====================================================");
+        System.out.println("Hasil Faktorial dengan Brute Force");
+        for (int i = 0; i < elemen; i++){
+            System.out.println("Faktorial dari nilai " + fk[i].nilai + " adalah : " + fk[i].faktorialBF(fk[i].nilai));
+        }
+        System.out.println("Waktu eksekusi faktorialBF() " + (endTime1-startTime1));
+        System.out.println("=====================================================");
+        System.out.println("Hasil Faktorial dengan Divide Conquer");
+        for (int i = 0; i < elemen; i++){
+            System.out.println("Faktorial dari nilai " + fk[i].nilai + " adalah : " + fk[i].faktorialDC(fk[i].nilai));
+        }
+        System.out.println("Waktu eksekusi faktorialDC() " + (endTime2-startTime2));
+        System.out.println("=====================================================");
+    }
+}
+```
+_Hasil output_
+ 
+5.	Buktikan dengan inputan elemen yang di atas 20 angka, apakah ada perbedaan waktu eksekusi?
+>
+     
+## 3	Menghitung Hasil Pangkat dengan Algoritma Brute Force dan Divide and Conquer
+Pada praktikum ini kita akan membuat program class dalam Java. Untuk menghitung nilai pangkat suatu angka menggunakan 2 jenis algoritma, Brute Force dan Divide and Conquer.Langkah-langkah Percobaan 
+
+**3.1	Langkah-langkah Percobaan**
+1.	Di dalam paket minggu5, buatlah class baru dengan nama Pangkat. Dan di dalam class Pangkat tersebut, buat atribut angka yang akan dipangkatkan sekaligus dengan angka pemangkatnya 
+```java
+    public int nilai,pangkat;
+```
+
+2.	Pada class Pangkat tersebut, tambahkan method PangkatBF()
+```java
+    public int pangkatBF(int a, int n){
+        int hasil = 1;
+        for (int i = 0; i < n; i++){
+            hasil = hasil * a;
+        }
+        return hasil;
+    }
+```
+3.	Pada class Pangkat juga tambahkan method PangkatDC() 
+```java
+    public int pangkatDC(int a, int n){
+        if (n==0){
+            return 1;
+        }
+        else{
+            if (n%2==1)//bilangan ganjil
+                return (pangkatDC(a,n/2) *pangkatDC(a,n/2)*a);
+            else//bilangan genap
+                return (pangkatDC(a,n/2) *pangkatDC(a,n/2));
+        }
+    }
+```
+
+4.	Perhatikan apakah sudah tidak ada kesalahan yang muncul dalam pembuatan class Pangkat 
+5.	Selanjutnya buat class baru yang di dalamnya terdapat method main. Class tersebut dapat dinamakan MainPangkat. Tambahkan kode pada class main untuk menginputkan jumlah nilai yang akan dihitung pangkatnya. 
+ ```java
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=====================================================");
+        System.out.print("Masukkan jumlah elemen yang ingin dihitung : ");
+        int elemen = sc.nextInt();
+```
+
+6.	Nilai pada tahap 5 selanjutnya digunakan untuk instansiasi array of objek. Di dalam Kode berikut ditambahkan proses pengisian beberapa nilai yang akan dipangkatkan sekaligus dengan pemangkatnya.
+```java
+        Pangkat [] png = new Pangkat[elemen];
+        
+        for (int i = 0; i < elemen; i++){
+            // png[i] = new Pangkat();
+            System.out.print("Masukkan nilai yang akan dipangkatkan ke-" + (i+1) + " : ");
+            int n = sc.nextInt();
+            System.out.print("Masukkan nilai pemangkatan ke-" + (i+1) + " : ");
+            int p = sc.nextInt();
+            png[i] = new Pangkat (n, p);
+        }
+```
+
+7.	Kemudian, panggil hasil nya dengan mengeluarkan return value dari method PangkatBF() dan PangkatDC().
+```java
+System.out.println("=====================================================");
+        System.out.println("Hasil Pangkat dengan Brute Force");
+        for (int i = 0; i < elemen; i++){
+            System.out.println("Nilai " + png[i].nilai + " pangkat " + png[i].pangkat + " adalah : " + png[i].pangkatBF(png[i].nilai, png[i].pangkat));
+        }
+        System.out.println("=====================================================");
+        System.out.println("Hasil Pangkat dengan Divide Conquer");
+        for (int i = 0; i < elemen; i++){
+            System.out.println("Nilai " + png[i].nilai + " pangkat " + png[i].pangkat + " adalah : " + png[i].pangkatDC(png[i].nilai, png[i].pangkat));
+        }
+        System.out.println("=====================================================");
+```
+
+**3.2	Verifikasi Hasil Percobaan**
+
+Pastikan output yang ditampilkan sudah benar seperti di bawah ini.
+ 
+**3.3	Pertanyaan **
+1.	Jelaskan mengenai perbedaan 2 method yang dibuat yaitu PangkatBF() dan PangkatDC()! 
+>Dalam metode PangkatBF(), kita menggunakan for loop untuk mengulang perkalian bilangan dasar sebanyak pangkat yang diinginkan.
+>Dalam metode PangkatDC(), memecah masalah perpangkatan menjadi submasalah yang lebih kecil dan lebih mudah dipecahkan. Setelah itu, hasil dari submasalah tersebut digabungkan untuk mendapatkan hasil akhir. 
+
+2.	Pada method PangkatDC() terdapat potongan program sebagai berikut: 
+ 
+Jelaskan arti potongan kode tersebut 
+>* Jika nilai pangkat n adalah 0, maka metode akan mengembalikan nilai 1,
+>* Jika nilai pangkat n bukan 0, maka program akan memeriksa apakah n adalah bilangan ganjil atau genap dengan memeriksa sisa hasil bagi n dengan 2. 
+>* Jika n adalah bilangan ganjil, maka program akan memanggil fungsi pangkatDC() sebanyak dua kali dengan nilai pangkat n/2, dan hasil dari kedua panggilan tersebut akan dikalikan dengan nilai bilangan dasar a.
+>* Jika n adalah bilangan genap, maka program akan memanggil fungsi pangkatDC() rekursif sebanyak dua kali dengan nilai pangkat n/2, dan hasil dari kedua panggilan tersebut akan dikalikan tanpa mempertimbangkan nilai bilangan dasar a.
+
+3.	Apakah tahap combine sudah termasuk dalam kode tersebut?Tunjukkan!
+>Sudah termasuk dalan potongan kode dibawah ini
+
+4.	Modifikasi kode program tersebut, anggap proses pengisian atribut dilakukan dengan konstruktor. 
+```java 
+        for (int i = 0; i < elemen; i++){
+            // png[i] = new Pangkat();
+            System.out.print("Masukkan nilai yang akan dipangkatkan ke-" + (i+1) + " : ");
+            int n = sc.nextInt();
+            System.out.print("Masukkan nilai pemangkatan ke-" + (i+1) + " : ");
+            int p = sc.nextInt();
+            png[i] = new Pangkat (n, p);
+        }
+```
+
+5.	Tambahkan menu agar salah satu method yang terpilih saja yang akan dijalankan!
+```java 
+Kode program 
+package minggu5;
+
+import java.util.Scanner;
+
+public class MainPangkat {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=====================================================");
+        System.out.print("Masukkan jumlah elemen yang ingin dihitung : ");
+        int elemen = sc.nextInt();
+        
+        Pangkat [] png = new Pangkat[elemen];
+        
+        for (int i = 0; i < elemen; i++){
+            // png[i] = new Pangkat();
+            System.out.print("Masukkan nilai yang akan dipangkatkan ke-" + (i+1) + " : ");
+            int n = sc.nextInt();
+            System.out.print("Masukkan nilai pemangkatan ke-" + (i+1) + " : ");
+            int p = sc.nextInt();
+            png[i] = new Pangkat (n, p);
+        }
+        
+        boolean exitMenu = false;
+        do {
+            System.out.println("=====================================================");
+        System.out.println("Pilih Metode Perangkatan");
+        System.out.println("1. Brute Force");
+        System.out.println("2. Devide and Conquer ");
+        System.out.println("3. Exit ");
+        System.out.println("=====================================================");
+        System.out.print("Pilih metode perpangkatan : ");
+        int pilih = sc.nextInt();
+        
+        switch (pilih) {
+            case 1:
+                System.out.println("=====================================================");
+                System.out.println("Hasil Pangkat dengan Brute Force");
+                for (int i = 0; i < elemen; i++){
+                    System.out.println("Nilai " + png[i].nilai + " pangkat " + png[i].pangkat + " adalah : " + png[i].pangkatBF(png[i].nilai, png[i].pangkat));
+                }   System.out.println("=====================================================");
+                break;
+            case 2:
+                System.out.println("=====================================================");
+                System.out.println("Hasil Pangkat dengan Divide and Conquer");
+                for (int i = 0; i < elemen; i++){
+                    System.out.println("Nilai " + png[i].nilai + " pangkat " + png[i].pangkat + " adalah : " + png[i].pangkatDC(png[i].nilai, png[i].pangkat));
+                }   System.out.println("=====================================================");
+                break;
+            default:
+                System.out.println("Anda keluar");
+                exitMenu = true;
+                break;
+        }
+        
+        } while (!exitMenu);
+    }
+}
+```
+
+Hasil output
+ 
+## Menghitung Sum Array dengan Algoritma Brute Force dan Divide and Conquer 
+Di dalam percobaan ini, kita akan mempraktekkan bagaimana proses divide, conquer, dan combine diterapkan pada studi kasus penjumlahan keuntungan suatu perusahaan dalam beberapa bulan.  
+
+**4.1	Langkah-langkah Percobaan** 
+1.	Pada paket minggu5. Buat class baru yaitu class Sum. DI salam class tersebut terdapat beberapa atribut jumlah elemen array, array, dan juga total. Tambahkan pula konstruktor pada class Sum. 
+```java
+
+```
+
+2.	Tambahkan method TotalBF() yang akan menghitung total nilai array dengan cara iterative. 
+```java
+
+```
+
+3.	Tambahkan pula method TotalDC() untuk implementasi perhitungan nilai total array menggunakan algoritma Divide and Conquer
+```java
+
+```
+
+4.	Buat class baru yaitu MainSum. Di dalam kelas ini terdapat method main. Pada method ini user dapat menuliskan berapa bulan keuntungan yang akan dihitung. Dalam kelas ini sekaligus dibuat instansiasi objek untuk memanggil atribut ataupun fungsi pada class Sum 
+```java
+
+```
+ 
+5.	Karena yang akan dihitung adalah total nilai keuntungan, maka ditambahkan pula pada method main mana array yang akan dihitung. Array tersebut merupakan atribut yang terdapat di class Sum, maka dari itu dibutuhkan pembuatan objek Sum terlebih dahulu. 
+```java
+
+```
+ 
+6.	Tampilkan hasil perhitungan melalui objek yang telah dibuat untuk kedua cara yang ada (Brute Force dan Divide and Conquer)
+ ```java
+
+```
+
+**4.2	Verifikasi Hasil Percobaan**
+
+Cocokkan hasil compile kode program anda dengan gambar berikut ini. 
+ 
+**4.3	Pertanyaan**
+1.	Berikan ilustrasi perbedaan perhitungan keuntungan dengan method TotalBF() ataupun TotalDC() 
+>Perbedaan antara kedua method tersebut terletak pada cara penghitungan keuntungan yang berbeda. Pada TotalBF(), penghitungan keuntungan dilakukan dengan menggunakan loop for sederhana dan menjumlahkan keuntungan setiap tahun secara berurutan. Sedangkan pada TotalDC(), penghitungan keuntungan dilakukan dengan menggunakan teknik divide and conquer.
+
+2.	Perhatikan output dari kedua jenis algoritma tersebut bisa jadi memiliki hasil berbeda di belakang koma. Bagaimana membatasi output di belakang koma agar menjadi standar untuk kedua jenis algoritma tersebut.
+>Untuk membatasi output di belakang koma, kita dapat menggunakan fungsi round(). Fungsi round() akan membulatkan suatu bilangan desimal menjadi bilangan bulat terdekat.
+```java
+
+```
+
+Hasil output 
+ 
+3.	Mengapa terdapat formulasi return value berikut?Jelaskan! 
+```java
+
+```
+
+>Pada saat kita memanggil fungsi rekursif pada subarray kiri dan kanan, kedua subarray tersebut akan disimpan pada variabel lsum dan rsum. Karena subarray yang melintasi kedua bagian berbatasan dengan indeks tengah (mid), maka kita perlu menambahkan nilai arr[mid] pada hasil penjumlahan lsum + rsum untuk memperoleh nilai subarray dengan jumlah maksimum yang melintasi kedua bagian.
+
+4.	Kenapa dibutuhkan variable mid pada method TotalDC()? 
+>Karena perlu membagi array menjadi dua bagian pada setiap tahapnya.
+
+5.	Program perhitungan keuntungan suatu perusahaan ini hanya untuk satu perusahaan saja. Bagaimana cara menghitung sekaligus keuntungan beberapa bulan untuk beberapa perusahaan.(Setiap perusahaan bisa saja memiliki jumlah bulan berbeda-beda)? Buktikan dengan program!
+ 
+_Kode Program_ 
+```java
+package minggu5;
+
+import static java.lang.Math.round;
+
+public class Sum {
+    public int elemen;
+    public double keuntungan[];
+    public double total;
+    
+    Sum(int elemen){
+        this.elemen = elemen;
+        this.keuntungan = new double[elemen];
+        this.total = 0;
+    }
+    
+    double totalBF(double arr[]){
+        for (int i = 0; i < elemen; i++){
+            total = total + arr[i];
+        }
+        return round (total);
+    }
+    
+    double totalDC(double arr[], int l, int r){
+        if(l==r)
+            return arr[l];
+        else if(l<r){
+            int mid = (l+r)/2;
+            double lsum = totalDC(arr, l, mid-1);
+            double rsum = totalDC(arr, mid+1, r);
+            return round (lsum + rsum + arr[mid]);
+        }
+        return 0;
+    } 
+}
+```
+
+_Hasil output_
+ 
+
+# 5	Latihan Praktikum
+1.	Suatu Perguruan Tinggi di kota Malang sedang mengadakan pemilihan suara untuk memilih ketua BEM tahun 2022. Jika jumlah suara yang terkumpul diumpamakan selalu genap. Maka dengan inputan kandidat terpilih, carilah mayoritas jumlah suara untuk masing-masing kandidat. (Jumlah elemen array dan hasil pemilhan suara merupakan inputan user). Elemen Mayoritas : 
+
+Elemen mayoritas di dalam A adalah elemen yang terdapat pada lebih dari n/2 posisi. Contohnya, jika n=6 atau n=7 maka nilai mayoritas paling sedikit adalah 4. Berasal dari (7/2)+1 atau (6/2)+1).
+
+Nilai mayoritas berbeda konsep dengan menghitung total suara terbanyak kandidat terpilih ! 
+
+Contoh : Hasil pemilihan suara sebagai berikut (m adalah mayoritas, nm adalah no mayoritas)
+
+Karena n = 8, nilai mayoritas paling sedikit sejumlah 5 (8/2+1) Keterangan : Warna Biru adalah proses divide, warna kuning dimulainya proses conquer, warna hijau dimulainya proses combine
+
+_Kode program main_
+```java
+package minggu5;
+
+import java.util.Scanner;
+
+public class PemilihanKetuaBEM {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Pemilihan vote = new Pemilihan();
+        
+        System.out.print("Masukkan banyak suara : ");
+        vote.jml = sc.nextInt();
+        int pilih[] = new int [vote.jml];
+        
+        System.out.println("Nama-nama calon");
+        System.out.println("=====================================================");
+        System.out.println("1. Haris");
+        System.out.println("2. Dian");
+        System.out.println("3. Rani");
+        System.out.println("4. Bisma ");
+        System.out.println("=====================================================");
+        for (int i = 0; i < vote.jml; i++) {
+            System.out.print("Pilih salah satu kandidat (1-4) : ");
+            pilih[i] = sc.nextInt();
+        }
+        
+        int suara = vote.voting(pilih, 0, vote.jml);
+        switch (suara) {
+            case 1:
+                vote.nama = "Haris";
+                break;
+            case 2:
+                vote.nama = "Dian";
+                break;
+            case 3:
+                vote.nama = "Rani";
+                break;
+            case 4:
+                vote.nama = "Bisma";
+                break;
+            default:
+                System.out.println("Pilihan yang anda masukkan tidak ada");
+                break;
+        }
+        System.out.println("==============================================================================================");
+        System.out.println("Kandidat yang calon ketua BEM yanng memiliki mayoritas suara adalah " + vote.nama);
+        System.out.println("=============================================================================================");
+        
+    }
+}
+```
+
+_Kode program method_
+```java
+package minggu5;
+
+public class Pemilihan {
+    int jml;
+    String nama;
+    
+    public int voting(int[] pilih, int low, int high) {
+        if(high - low == 1){
+            if(pilih[low] >= pilih[high]){
+                return pilih[low];
+            }else{
+                return pilih[high];
+            }
+        }else if(high > low){
+            int m = (high - low) / 2 + low;
+            int r = voting(pilih, m + 1, high);
+            int l = voting(pilih, low, m);
+            if(l != 0){
+                return l;
+            }else if (r != 0){
+                return r;
+            }
+            return high;
+        }
+        return 0;
+    }
+}
+```
+
+
+_Hasil output_
+ 
