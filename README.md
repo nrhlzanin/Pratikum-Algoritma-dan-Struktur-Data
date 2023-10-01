@@ -8,7 +8,7 @@ Pratikum Algoritma dan Struktur Data Semester 2
 6. Sorting (5)
 7. Searching (6)
 8. UTS
-9.Stack (7)
+9. Stack (7)
 10. Queue (8)
 11. Linked list (9)
 12. Doubel linked list
